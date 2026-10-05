@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppTokens {
   const AppTokens._();
 
-  // Spacing (dp)
+  // ── Spacing (dp) ──────────────────────────────────────────────────────────
   static const double spacing0 = 0.0;
   static const double spacing1 = 4.0;
   static const double spacing2 = 8.0;
@@ -16,21 +16,36 @@ class AppTokens {
   static const double spacing8 = 48.0;
   static const double spacing9 = 64.0;
 
-  // Radius (dp)
+  /// Semantic alias — medium spacing (16 dp). Matches [spacing4].
+  static const double spacingMd = spacing4;
+
+  /// Semantic alias — large spacing (24 dp). Matches [spacing5].
+  static const double spacingLg = spacing5;
+
+  // ── Radius (dp) ───────────────────────────────────────────────────────────
   static const double radiusNone = 0.0;
   static const double radiusSmall = 4.0;
   static const double radiusMedium = 8.0;
   static const double radiusLarge = 16.0;
   static const double radiusPill = 9999.0; // full pill shape
 
-  // Elevation (dp)
+  /// Semantic alias — small corner radius (4 dp). Matches [radiusSmall].
+  static const double radiusSm = radiusSmall;
+
+  /// Semantic alias — medium corner radius (8 dp). Matches [radiusMedium].
+  static const double radiusMd = radiusMedium;
+
+  // ── Elevation (dp) ────────────────────────────────────────────────────────
   static const double elevation0 = 0.0;
   static const double elevation1 = 1.0;
   static const double elevation2 = 2.0;
   static const double elevation3 = 4.0;
   static const double elevation4 = 8.0;
 
-  // Typography
+  /// Semantic alias — small elevation (2 dp). Matches [elevation2].
+  static const double elevationSm = elevation2;
+
+  // ── Typography ────────────────────────────────────────────────────────────
   static const String fontFamily = 'Inter';
   static const FontWeight fontWeightRegular = FontWeight.w400;
   static const FontWeight fontWeightMedium = FontWeight.w500;
