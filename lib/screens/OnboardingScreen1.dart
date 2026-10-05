@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+import 'package:my_app/theme/app_colors.dart';
+import 'package:my_app/theme/app_tokens.dart';
+
+class OnboardingScreen1 extends StatelessWidget {
+  const OnboardingScreen1({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      body: Padding(
+        padding: const EdgeInsets.all(AppTokens.spacingMd),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: Image.asset(
+                'assets/onboarding1.png',
+                fit: BoxFit.contain,
+              ),
+            ),
+            const SizedBox(height: AppTokens.spacingLg),
+            Text(
+              'Welcome to MyApp',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                color: AppColors.onBackground,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: AppTokens.spacingSm),
+            Text(
+              'Discover features that help you stay organized.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                color: AppColors.onBackground,
+              ),
+            ),
+            const SizedBox(height: AppTokens.spacingLg),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: AppColors.primary100,
+                padding: const EdgeInsets.symmetric(vertical: AppTokens.spacingMd),
+              ),
+              onPressed: () {
+                // TODO: Navigate to next onboarding screen
+              },
+              child: const Text('Next'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
