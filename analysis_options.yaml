@@ -1,5 +1,9 @@
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - UIUX_Roadmap/**
+
 linter:
   rules:
     - prefer_const_constructors
