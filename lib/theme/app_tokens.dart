@@ -49,9 +49,11 @@ class AppTokens {
   static const double elevationSm = elevation2;
 
   // ── Typography ────────────────────────────────────────────────────────────
-  static const String fontFamily = 'Inter';
+  /// VNEGREEN brand font — Poppins (Bold, SemiBold, Medium, Regular).
+  static const String fontFamily = 'Poppins';
   static const FontWeight fontWeightRegular = FontWeight.w400;
   static const FontWeight fontWeightMedium = FontWeight.w500;
+  static const FontWeight fontWeightSemiBold = FontWeight.w600;
   static const FontWeight fontWeightBold = FontWeight.w700;
 
   static const double fontSizeXS = 12.0;

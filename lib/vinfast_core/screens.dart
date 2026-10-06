@@ -1,8 +1,6 @@
 // lib/vinfast_core/screens.dart
 import 'package:flutter/material.dart';
 import 'widgets/common.dart';
-import '../theme/app_colors.dart';
-import '../theme/app_tokens.dart';
 
 /// A generic prototype screen used for the 100+ demo pages.
 /// Each screen shows its index and provides navigation buttons to
@@ -10,7 +8,7 @@ import '../theme/app_tokens.dart';
 /// Navigator and the shared Design System tokens.
 class PrototypeScreen extends StatelessWidget {
   final int index;
-  const PrototypeScreen(this.index, {Key? key}) : super(key: key);
+  const PrototypeScreen(this.index, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,8 @@ class PrototypeScreen extends StatelessWidget {
             child: Center(
               child: Text(
                 'Prototype Screen $index',
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
           ),
