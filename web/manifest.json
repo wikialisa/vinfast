@@ -1,0 +1,12 @@
+{
+    "name": "VinFast Companion",
+    "short_name": "VinFast",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#D8D8D8",
+    "theme_color": "#336699",
+    "description": "VinFast Companion Clone — Flutter prototype",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": []
+}
