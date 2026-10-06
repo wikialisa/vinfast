@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinfast/UIUX_Roadmap/lib/screens/remote_control_screen.dart';
+import 'package:vinfast/screens/remote_control_screen.dart';
 
 void main() {
   testWidgets('RemoteControlScreen shows all four control buttons',

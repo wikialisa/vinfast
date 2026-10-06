@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/theme/app_colors.dart';
-import 'package:my_app/theme/app_tokens.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_tokens.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primary100,
-      body: Center(
+      body: const Center(
         child: Text(
-          'Splash',
+          'VinFast',
           style: TextStyle(
-            fontSize: 24,
+            fontSize: AppTokens.fontSizeXXL,
+            fontWeight: FontWeight.bold,
             color: AppColors.onPrimary,
           ),
         ),

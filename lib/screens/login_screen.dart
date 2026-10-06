@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:vinfast/UIUX_Roadmap/lib/theme/app_colors.dart';
-import 'package:vinfast/UIUX_Roadmap/lib/theme/app_tokens.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_tokens.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +46,7 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: AppTokens.spacingLg),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                // ignore: deprecated_member_use
-                primary: AppColors.primary,
+                backgroundColor: AppColors.primary,
                 padding: const EdgeInsets.symmetric(
                   vertical: AppTokens.spacingMd,
                 ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:vinfast/UIUX_Roadmap/lib/theme/app_colors.dart';
-import 'package:vinfast/UIUX_Roadmap/lib/theme/app_tokens.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_tokens.dart';
 
 class OnboardingScreen1 extends StatelessWidget {
-  const OnboardingScreen1({Key? key}) : super(key: key);
+  const OnboardingScreen1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +48,7 @@ class OnboardingScreen1 extends StatelessWidget {
             const SizedBox(height: AppTokens.spacingLg),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                // ignore: deprecated_member_use
-                primary: AppColors.primary,
+                backgroundColor: AppColors.primary,
                 padding: const EdgeInsets.symmetric(
                   vertical: AppTokens.spacingMd,
                 ),

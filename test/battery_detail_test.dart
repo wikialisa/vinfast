@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinfast/UIUX_Roadmap/lib/screens/battery_detail_screen.dart';
+import 'package:vinfast/screens/battery_detail_screen.dart';
 
 void main() {
   testWidgets('BatteryDetailScreen shows battery level',

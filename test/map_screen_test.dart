@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinfast/UIUX_Roadmap/lib/screens/map_screen.dart';
+import 'package:vinfast/screens/map_screen.dart';
 
 void main() {
   testWidgets('MapScreen renders map placeholder and FAB',
