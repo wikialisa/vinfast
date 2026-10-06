@@ -25,22 +25,18 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppTokens.spacingLg),
-            TextField(
+            const TextField(
               decoration: InputDecoration(
                 labelText: 'Email',
-                border: const OutlineInputBorder(),
-                filled: true,
-                fillColor: AppColors.surface,
+                border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: AppTokens.spacingMd),
-            TextField(
+            const TextField(
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
-                border: const OutlineInputBorder(),
-                filled: true,
-                fillColor: AppColors.surface,
+                border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: AppTokens.spacingLg),

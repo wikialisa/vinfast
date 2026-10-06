@@ -7,9 +7,9 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.primary100,
-      body: const Center(
+      body: Center(
         child: Text(
           'VinFast',
           style: TextStyle(
