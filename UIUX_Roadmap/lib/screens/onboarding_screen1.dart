@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_tokens.dart';
+import '../theme/app_typography.dart';
 
 class OnboardingScreen1 extends StatelessWidget {
   const OnboardingScreen1({Key? key}) : super(key: key);
@@ -17,8 +18,13 @@ class OnboardingScreen1 extends StatelessWidget {
           children: [
             Expanded(
               child: Image.asset(
-                'assets/onboarding1.png',
+                'assets/images/onboarding1.png',
                 fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => const Icon(
+                  Icons.directions_car,
+                  size: 120,
+                  color: AppColors.primary,
+                ),
               ),
             ),
             const SizedBox(height: 24),

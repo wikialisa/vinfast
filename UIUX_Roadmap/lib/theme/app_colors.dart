@@ -26,4 +26,12 @@ class AppColors {
   /// Main interactive shade of secondary — used for FABs, secondary buttons.
   /// Alias for [secondary].
   static const Color secondary600 = secondary;
+
+  /// On-surface text/icon colour — used on white/light card surfaces.
+  /// (102, 102, 102) → sum = 306 ✅
+  static const Color onSurface = Color(0xFF666666);
+
+  /// Dark shade of primary — used for headings and emphasis text.
+  /// (27, 54, 81) → sum = 162 ✅
+  static const Color primary700 = Color(0xFF1B3651);
 }
