@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/theme/app_colors.dart';
-import 'package:my_app/theme/app_tokens.dart';
+import 'package:vinfast/UIUX_Roadmap/lib/theme/app_colors.dart';
+import 'package:vinfast/UIUX_Roadmap/lib/theme/app_tokens.dart';
 
 class OnboardingScreen1 extends StatelessWidget {
   const OnboardingScreen1({Key? key}) : super(key: key);
@@ -17,13 +17,18 @@ class OnboardingScreen1 extends StatelessWidget {
           children: [
             Expanded(
               child: Image.asset(
-                'assets/onboarding1.png',
+                'assets/images/onboarding1.png',
                 fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => const Icon(
+                  Icons.directions_car,
+                  size: 120,
+                  color: AppColors.primary,
+                ),
               ),
             ),
             const SizedBox(height: AppTokens.spacingLg),
-            Text(
-              'Welcome to MyApp',
+            const Text(
+              'Welcome to VinFast',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
@@ -32,8 +37,8 @@ class OnboardingScreen1 extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppTokens.spacingSm),
-            Text(
-              'Discover features that help you stay organized.',
+            const Text(
+              'Discover features that help you stay connected to your vehicle.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
@@ -43,8 +48,11 @@ class OnboardingScreen1 extends StatelessWidget {
             const SizedBox(height: AppTokens.spacingLg),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: AppColors.primary100,
-                padding: const EdgeInsets.symmetric(vertical: AppTokens.spacingMd),
+                // ignore: deprecated_member_use
+                primary: AppColors.primary,
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppTokens.spacingMd,
+                ),
               ),
               onPressed: () {
                 // TODO: Navigate to next onboarding screen

@@ -16,6 +16,9 @@ class AppTokens {
   static const double spacing8 = 48.0;
   static const double spacing9 = 64.0;
 
+  /// Semantic alias — small spacing (8 dp). Matches [spacing2].
+  static const double spacingSm = spacing2;
+
   /// Semantic alias — medium spacing (16 dp). Matches [spacing4].
   static const double spacingMd = spacing4;
 

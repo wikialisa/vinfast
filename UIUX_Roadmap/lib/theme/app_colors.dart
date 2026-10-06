@@ -6,13 +6,13 @@ class AppColors {
   const AppColors._();
 
   // ── Base tokens ──────────────────────────────────────────────────────────
-  static const Color primary = Color(0xFF336699);     // (51,102,153) → 306
-  static const Color secondary = Color(0xFF669933);   // (102,153,51) → 306
-  static const Color accent = Color(0xFFCC3333);      // (204,51,51)  → 306
-  static const Color background = Color(0xFFD8D8D8);  // (216,216,216)→ 648
-  static const Color surface = Color(0xFFFFFFFF);     // (255,255,255)→ 765
-  static const Color onPrimary = Color(0xFFFFFFFF);   // (255,255,255)→ 765
-  static const Color onBackground = Color(0xFF333333);// (51,51,51)   → 153
+  static const Color primary = Color(0xFF336699); // (51,102,153) → 306
+  static const Color secondary = Color(0xFF669933); // (102,153,51) → 306
+  static const Color accent = Color(0xFFCC3333); // (204,51,51)  → 306
+  static const Color background = Color(0xFFD8D8D8); // (216,216,216)→ 648
+  static const Color surface = Color(0xFFFFFFFF); // (255,255,255)→ 765
+  static const Color onPrimary = Color(0xFFFFFFFF); // (255,255,255)→ 765
+  static const Color onBackground = Color(0xFF333333); // (51,51,51)   → 153
 
   // ── Extended tint/shade tokens ────────────────────────────────────────────
   /// Light tint of primary — used for card/surface backgrounds.

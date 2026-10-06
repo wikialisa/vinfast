@@ -19,7 +19,6 @@ class DashboardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Stats card example
             Card(
               color: AppColors.primary100,
               shape: RoundedRectangleBorder(
@@ -31,14 +30,20 @@ class DashboardScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
                     Icon(Icons.show_chart, size: 32, color: Colors.white),
-                    Text('42', style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold)),
+                    Text(
+                      '42',
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     Text('Orders', style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 24),
-            // Quick actions placeholder
             Wrap(
               spacing: AppTokens.spacingMd,
               runSpacing: AppTokens.spacingMd,
@@ -47,8 +52,12 @@ class DashboardScreen extends StatelessWidget {
                   icon: const Icon(Icons.add),
                   label: const Text('New Order'),
                   style: ElevatedButton.styleFrom(
+                    // ignore: deprecated_member_use
                     primary: AppColors.secondary600,
-                    padding: EdgeInsets.symmetric(vertical: AppTokens.spacingMd, horizontal: AppTokens.spacingLg),
+                    padding: EdgeInsets.symmetric(
+                      vertical: AppTokens.spacingMd,
+                      horizontal: AppTokens.spacingLg,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppTokens.radiusSm),
                     ),
@@ -59,8 +68,12 @@ class DashboardScreen extends StatelessWidget {
                   icon: const Icon(Icons.history),
                   label: const Text('History'),
                   style: ElevatedButton.styleFrom(
+                    // ignore: deprecated_member_use
                     primary: AppColors.secondary600,
-                    padding: EdgeInsets.symmetric(vertical: AppTokens.spacingMd, horizontal: AppTokens.spacingLg),
+                    padding: EdgeInsets.symmetric(
+                      vertical: AppTokens.spacingMd,
+                      horizontal: AppTokens.spacingLg,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppTokens.radiusSm),
                     ),

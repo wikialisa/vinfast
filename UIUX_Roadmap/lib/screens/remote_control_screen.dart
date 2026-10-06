@@ -35,7 +35,12 @@ class RemoteControlScreen extends StatelessWidget {
 class _RemoteButton extends StatelessWidget {
   final IconData icon;
   final String label;
-  const _RemoteButton({Key? key, required this.icon, required this.label}) : super(key: key);
+
+  const _RemoteButton({
+    Key? key,
+    required this.icon,
+    required this.label,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +48,7 @@ class _RemoteButton extends StatelessWidget {
       icon: Icon(icon, size: 32),
       label: Text(label),
       style: ElevatedButton.styleFrom(
+        // ignore: deprecated_member_use
         primary: AppColors.secondary600,
         padding: EdgeInsets.symmetric(vertical: AppTokens.spacingMd),
         shape: RoundedRectangleBorder(

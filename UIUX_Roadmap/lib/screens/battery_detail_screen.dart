@@ -28,11 +28,20 @@ class BatteryDetailScreen extends StatelessWidget {
                 padding: EdgeInsets.all(AppTokens.spacingMd),
                 child: Column(
                   children: const [
-                    Text('Battery Level', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    Text(
+                      'Battery Level',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(height: 12),
                     LinearProgressIndicator(value: 0.78, minHeight: 8),
                     SizedBox(height: 8),
-                    Text('78% (45 km range)', style: TextStyle(fontSize: 16)),
+                    Text(
+                      '78% (45 km range)',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ],
                 ),
               ),
@@ -42,6 +51,7 @@ class BatteryDetailScreen extends StatelessWidget {
               icon: const Icon(Icons.refresh),
               label: const Text('Refresh'),
               style: ElevatedButton.styleFrom(
+                // ignore: deprecated_member_use
                 primary: AppColors.secondary600,
                 padding: EdgeInsets.symmetric(vertical: AppTokens.spacingMd),
                 shape: RoundedRectangleBorder(

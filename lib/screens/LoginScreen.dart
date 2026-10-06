@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/theme/app_colors.dart';
-import 'package:my_app/theme/app_tokens.dart';
+import 'package:vinfast/UIUX_Roadmap/lib/theme/app_colors.dart';
+import 'package:vinfast/UIUX_Roadmap/lib/theme/app_tokens.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -46,8 +46,11 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: AppTokens.spacingLg),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: AppColors.primary100,
-                padding: const EdgeInsets.symmetric(vertical: AppTokens.spacingMd),
+                // ignore: deprecated_member_use
+                primary: AppColors.primary,
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppTokens.spacingMd,
+                ),
               ),
               onPressed: () {
                 // TODO: Implement login logic
