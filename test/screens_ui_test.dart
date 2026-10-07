@@ -98,7 +98,8 @@ void main() {
     testWidgets('shows Battery metric tile', (tester) async {
       await tester.pumpWidget(dashWrap());
       expect(find.text('78%'), findsOneWidget);
-      expect(find.text('Battery'), findsOneWidget);
+      // 'Battery' appears in the metric tile AND the quick-action button label
+      expect(find.text('Battery'), findsWidgets);
     });
 
     testWidgets('shows Range metric tile', (tester) async {
@@ -122,18 +123,44 @@ void main() {
       expect(find.text('Quick Actions'), findsOneWidget);
     });
 
-    testWidgets('Find Station button navigates to /stations', (tester) async {
+    testWidgets('Find Station button is present', (tester) async {
       await tester.pumpWidget(dashWrap());
-      await tester.tap(find.text('Find Station'));
+      // Button may be below viewport; just confirm it exists in the tree
+      expect(find.text('Find Station'), findsOneWidget);
+    });
+
+    testWidgets('Battery button is present', (tester) async {
+      await tester.pumpWidget(dashWrap());
+      expect(find.text('Battery'), findsWidgets);
+    });
+
+    testWidgets('Find Station button navigates to /stations', (tester) async {
+      await tester.pumpWidget(MaterialApp(
+        routes: {
+          '/stations': (_) => const Scaffold(body: Text('StationsPage')),
+          '/battery': (_) => const Scaffold(body: Text('BatteryPage')),
+        },
+        home: const DashboardScreen(),
+      ));
+      await tester.ensureVisible(find.text('Find Station'));
+      await tester.tap(find.text('Find Station'), warnIfMissed: false);
       await tester.pumpAndSettle();
-      expect(find.text('Stations'), findsOneWidget);
+      expect(find.text('StationsPage'), findsOneWidget);
     });
 
     testWidgets('Battery button navigates to /battery', (tester) async {
-      await tester.pumpWidget(dashWrap());
-      await tester.tap(find.text('Battery'));
+      await tester.pumpWidget(MaterialApp(
+        routes: {
+          '/stations': (_) => const Scaffold(body: Text('StationsPage')),
+          '/battery': (_) => const Scaffold(body: Text('BatteryPage')),
+        },
+        home: const DashboardScreen(),
+      ));
+      await tester.ensureVisible(find.widgetWithText(OutlinedButton, 'Battery'));
+      await tester.tap(find.widgetWithText(OutlinedButton, 'Battery'),
+          warnIfMissed: false);
       await tester.pumpAndSettle();
-      expect(find.text('Battery'), findsOneWidget);
+      expect(find.text('BatteryPage'), findsOneWidget);
     });
   });
 
@@ -145,9 +172,11 @@ void main() {
     testWidgets('shows 4 bottom nav items', (tester) async {
       await tester.pumpWidget(homeWrap());
       expect(find.byType(BottomNavigationBar), findsOneWidget);
-      expect(find.text('Dashboard'), findsOneWidget);
-      expect(find.text('Map'), findsOneWidget);
-      expect(find.text('Remote'), findsOneWidget);
+      // 'Dashboard' appears in BottomNav label AND DashboardScreen AppBar title
+      expect(find.text('Dashboard'), findsWidgets);
+      // 'Map' appears in BottomNav label AND MapScreen AppBar title
+      expect(find.text('Map'), findsWidgets);
+      expect(find.text('Remote'), findsWidgets);
       expect(find.text('Profile'), findsOneWidget);
     });
 

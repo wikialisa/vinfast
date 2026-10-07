@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_tokens.dart';
@@ -30,6 +32,7 @@ class _ChargingSessionScreenState extends State<ChargingSessionScreen> {
   double _kwhDelivered = 0.0;
   double _estimatedCost = 0.0;
   String? _receiptId;
+  Timer? _chargingTimer;
 
   late final ChargingStation _station;
 
@@ -51,34 +54,40 @@ class _ChargingSessionScreenState extends State<ChargingSessionScreen> {
         );
   }
 
+  @override
+  void dispose() {
+    _chargingTimer?.cancel();
+    super.dispose();
+  }
+
   // ── Phase transitions ─────────────────────────────────────────────────────
 
   Future<void> _startPreAuth() async {
     setState(() => _phase = _SessionPhase.preAuth);
-    // Simulate API call: POST /sessions/start → pre‑auth
     await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
     setState(() => _phase = _SessionPhase.charging);
-    _simulateCharging();
+    _startChargingTimer();
   }
 
-  void _simulateCharging() {
-    _chargingTick();
+  void _startChargingTimer() {
+    _scheduleChargingTick();
   }
 
-  Future<void> _chargingTick() async {
-    await Future.delayed(const Duration(seconds: 3));
-    if (!mounted || _phase != _SessionPhase.charging) return;
-    setState(() {
-      _kwhDelivered += 0.5;
-      _estimatedCost = _kwhDelivered * _kPricePerKwh;
+  void _scheduleChargingTick() {
+    _chargingTimer = Timer(const Duration(seconds: 3), () {
+      if (!mounted || _phase != _SessionPhase.charging) return;
+      setState(() {
+        _kwhDelivered += 0.5;
+        _estimatedCost = _kwhDelivered * _kPricePerKwh;
+      });
+      _scheduleChargingTick();
     });
-    _chargingTick();
   }
 
   Future<void> _stopSession() async {
+    _chargingTimer?.cancel();
     setState(() => _phase = _SessionPhase.stopped);
-    // Simulate API call: POST /sessions/stop → capture
     await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
     setState(() {
@@ -255,11 +264,12 @@ class _ChargingView extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    const Icon(Icons.bolt, size: 36, color: AppColors.primary600),
+                    const Icon(Icons.bolt,
+                        size: 36, color: AppColors.primary600),
                     Text(
                       '${kwhDelivered.toStringAsFixed(1)} kWh',
-                      style:
-                          AppTypography.h2.copyWith(color: AppColors.primary700),
+                      style: AppTypography.h2
+                          .copyWith(color: AppColors.primary700),
                     ),
                   ],
                 ),
@@ -350,56 +360,107 @@ class _ReceiptView extends StatelessWidget {
     required this.onDone,
   });
 
+  // CO₂ tiết kiệm: 0.5 kg CO₂ mỗi kWh so với động cơ xăng
+  double get _co2SavedKg => kwhDelivered * 0.5;
+
+  // Điểm thưởng xanh: 10 điểm / kWh
+  int get _greenPoints => (kwhDelivered * 10).toInt();
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const Icon(Icons.check_circle, size: 72, color: AppColors.primary600),
-        const SizedBox(height: AppTokens.spacingMd),
-        const Text('Charging Complete!',
-            textAlign: TextAlign.center, style: AppTypography.h2),
-        const SizedBox(height: AppTokens.spacingLg),
-        VfCard(
-          child: Column(
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Icon(Icons.check_circle, size: 72, color: AppColors.primary600),
+          const SizedBox(height: AppTokens.spacingMd),
+          const Text('Charging Complete!',
+              textAlign: TextAlign.center, style: AppTypography.h2),
+          const SizedBox(height: AppTokens.spacingLg),
+          VfCard(
+            child: Column(
+              children: [
+                _ReceiptRow(label: 'Station', value: station.name),
+                const Divider(color: AppColors.divider),
+                _ReceiptRow(
+                    label: 'Energy Delivered',
+                    value: '${kwhDelivered.toStringAsFixed(2)} kWh'),
+                _ReceiptRow(
+                    label: 'Unit Price',
+                    value: '${_formatVnd(station.pricePerKwh)} / kWh'),
+                const Divider(color: AppColors.divider),
+                _ReceiptRow(
+                    label: 'Total', value: _formatVnd(totalCost), bold: true),
+                const _ReceiptRow(label: 'Payment', value: 'Visa •••• 4242'),
+                _ReceiptRow(label: 'Receipt ID', value: receiptId),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppTokens.spacingMd),
+          // ── CO₂ & Green Points ──────────────────────────────────────────
+          Row(
             children: [
-              _ReceiptRow(label: 'Station', value: station.name),
-              const Divider(color: AppColors.divider),
-              _ReceiptRow(
-                  label: 'Energy Delivered',
-                  value: '${kwhDelivered.toStringAsFixed(2)} kWh'),
-              _ReceiptRow(
-                  label: 'Unit Price',
-                  value: '${_formatVnd(station.pricePerKwh)} / kWh'),
-              const Divider(color: AppColors.divider),
-              _ReceiptRow(
-                  label: 'Total', value: _formatVnd(totalCost), bold: true),
-              const _ReceiptRow(label: 'Payment', value: 'Visa •••• 4242'),
-              _ReceiptRow(label: 'Receipt ID', value: receiptId),
+              Expanded(
+                child: VfCard(
+                  color: AppColors.primary100,
+                  child: Column(
+                    children: [
+                      const Icon(Icons.eco,
+                          color: AppColors.primary700, size: 28),
+                      const SizedBox(height: AppTokens.spacing1),
+                      Text(
+                        '${_co2SavedKg.toStringAsFixed(1)} kg',
+                        style: AppTypography.h3
+                            .copyWith(color: AppColors.primary700),
+                      ),
+                      const Text('CO₂ tiết kiệm', style: AppTypography.caption),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(width: AppTokens.spacingMd),
+              Expanded(
+                child: VfCard(
+                  color: AppColors.primary100,
+                  child: Column(
+                    children: [
+                      const Icon(Icons.star,
+                          color: AppColors.secondary, size: 28),
+                      const SizedBox(height: AppTokens.spacing1),
+                      Text(
+                        '$_greenPoints pts',
+                        style: AppTypography.h3
+                            .copyWith(color: AppColors.primary700),
+                      ),
+                      const Text('Điểm thưởng xanh', style: AppTypography.caption),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
-        ),
-        const Spacer(),
-        Row(
-          children: [
-            Expanded(
-              child: VfButton.outlined(
-                label: 'Share',
-                icon: Icons.share_outlined,
-                onPressed: () {},
+          const SizedBox(height: AppTokens.spacingLg),
+          Row(
+            children: [
+              Expanded(
+                child: VfButton.outlined(
+                  label: 'Share',
+                  icon: Icons.share_outlined,
+                  onPressed: () {},
+                ),
               ),
-            ),
-            const SizedBox(width: AppTokens.spacingMd),
-            Expanded(
-              child: VfButton(
-                label: 'Done',
-                icon: Icons.home_outlined,
-                onPressed: onDone,
+              const SizedBox(width: AppTokens.spacingMd),
+              Expanded(
+                child: VfButton(
+                  label: 'Done',
+                  icon: Icons.home_outlined,
+                  onPressed: onDone,
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

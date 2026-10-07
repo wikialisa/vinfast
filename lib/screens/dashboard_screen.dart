@@ -111,6 +111,27 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: AppTokens.spacingMd),
+            Row(
+              children: [
+                Expanded(
+                  child: VfButton.outlined(
+                    label: 'Car Remote',
+                    icon: Icons.settings_remote,
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/car-remote'),
+                  ),
+                ),
+                const SizedBox(width: AppTokens.spacingMd),
+                Expanded(
+                  child: VfButton.outlined(
+                    label: 'EV Garage',
+                    icon: Icons.directions_car,
+                    onPressed: () => Navigator.pushNamed(context, '/garage'),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

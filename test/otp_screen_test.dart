@@ -10,12 +10,8 @@ void main() {
         home: OtpScreen(maskedContact: contact ?? '+84 *** *** 789'),
       );
 
-  /// Pumps the widget and then drains the pending 1-second tick timer
-  /// so the test framework does not complain about pending timers.
   Future<void> pumpOtp(WidgetTester tester, {String? contact}) async {
     await tester.pumpWidget(_wrap(contact: contact));
-    // Drain the first 1-second tick of _tickResend so no pending timers remain.
-    await tester.pump(const Duration(seconds: 2));
   }
 
   group('OtpScreen – render', () {
@@ -46,10 +42,7 @@ void main() {
 
     testWidgets('resend countdown text is shown initially', (tester) async {
       await tester.pumpWidget(_wrap());
-      // Before any tick fires, countdown is at 30
       expect(find.textContaining('Resend code in'), findsOneWidget);
-      // Drain pending timer
-      await tester.pump(const Duration(seconds: 2));
     });
   });
 
@@ -99,8 +92,7 @@ void main() {
       await tester.tap(find.text('Verify'));
       await tester.pump();
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
-      // Drain verify + timer
-      await tester.pump(const Duration(seconds: 3));
+      await tester.pump(const Duration(seconds: 2));
     });
 
     testWidgets('after verify completes navigates to /home', (tester) async {

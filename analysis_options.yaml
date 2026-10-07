@@ -5,6 +5,7 @@ analyzer:
     - UIUX_Roadmap/**
     - build/**
     - web/**
+    - android/**
 
 linter:
   rules:

@@ -52,7 +52,7 @@ class VfButton extends StatelessWidget {
     required this.onPressed,
     this.icon,
     this.isLoading = false,
-  })  : _variant = _VfButtonVariant.primary;
+  }) : _variant = _VfButtonVariant.primary;
 
   const VfButton.secondary({
     super.key,
@@ -60,7 +60,7 @@ class VfButton extends StatelessWidget {
     required this.onPressed,
     this.icon,
     this.isLoading = false,
-  })  : _variant = _VfButtonVariant.secondary;
+  }) : _variant = _VfButtonVariant.secondary;
 
   const VfButton.outlined({
     super.key,
@@ -68,7 +68,7 @@ class VfButton extends StatelessWidget {
     required this.onPressed,
     this.icon,
     this.isLoading = false,
-  })  : _variant = _VfButtonVariant.outlined;
+  }) : _variant = _VfButtonVariant.outlined;
 
   @override
   Widget build(BuildContext context) {

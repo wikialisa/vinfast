@@ -92,27 +92,38 @@ class _ProfileTab extends StatelessWidget {
         elevation: AppTokens.elevationSm,
       ),
       backgroundColor: AppColors.background,
-      body: const Padding(
-        padding: EdgeInsets.all(AppTokens.spacingLg),
+      body: Padding(
+        padding: const EdgeInsets.all(AppTokens.spacingLg),
         child: Column(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 40,
               backgroundColor: AppColors.primary100,
               child: Icon(Icons.person, size: 48, color: AppColors.primary700),
             ),
-            SizedBox(height: AppTokens.spacingMd),
+            const SizedBox(height: AppTokens.spacingMd),
             VfCard(
-              child: ListTile(
-                leading: Icon(Icons.directions_car,
-                    color: AppColors.primary600),
-                title: Text('My Vehicle', style: AppTypography.h4),
+              onTap: () => Navigator.pushNamed(context, '/garage'),
+              child: const ListTile(
+                leading:
+                    Icon(Icons.directions_car, color: AppColors.primary600),
+                title: Text('EV Garage & Ví sạc', style: AppTypography.h4),
                 subtitle: Text('VinFast VF 8', style: AppTypography.caption),
                 trailing: Icon(Icons.chevron_right),
               ),
             ),
-            SizedBox(height: AppTokens.spacingSm),
+            const SizedBox(height: AppTokens.spacingSm),
             VfCard(
+              onTap: () => Navigator.pushNamed(context, '/car-remote'),
+              child: const ListTile(
+                leading:
+                    Icon(Icons.settings_remote, color: AppColors.primary600),
+                title: Text('Điều khiển xe từ xa', style: AppTypography.h4),
+                trailing: Icon(Icons.chevron_right),
+              ),
+            ),
+            const SizedBox(height: AppTokens.spacingSm),
+            const VfCard(
               child: ListTile(
                 leading: Icon(Icons.notifications_outlined,
                     color: AppColors.primary600),

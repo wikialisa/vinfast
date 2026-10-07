@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/app_colors.dart';
@@ -27,6 +29,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   bool _isVerifying = false;
   int _resendSeconds = 30;
+  Timer? _resendTimer;
 
   @override
   void initState() {
@@ -35,16 +38,19 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   void _startResendTimer() {
-    _tickResend();
-  }
-
-  Future<void> _tickResend() async {
-    await Future.delayed(const Duration(seconds: 1));
-    if (!mounted) return;
-    if (_resendSeconds > 0) {
-      setState(() => _resendSeconds--);
-      _tickResend();
-    }
+    _resendTimer?.cancel();
+    _resendSeconds = 30;
+    _resendTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (!mounted) {
+        _resendTimer?.cancel();
+        return;
+      }
+      if (_resendSeconds > 0) {
+        setState(() => _resendSeconds--);
+      } else {
+        _resendTimer?.cancel();
+      }
+    });
   }
 
   String get _otp => _controllers.map((c) => c.text).join();
@@ -71,6 +77,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   void dispose() {
+    _resendTimer?.cancel();
     for (final c in _controllers) {
       c.dispose();
     }

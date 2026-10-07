@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
-import 'screens/onboarding_screen1.dart';
+import 'screens/onboarding_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/otp_screen.dart';
 import 'screens/home_screen.dart';
@@ -10,6 +10,9 @@ import 'screens/map_screen.dart';
 import 'screens/remote_control_screen.dart';
 import 'screens/charging_station_search_screen.dart';
 import 'screens/charging_session_screen.dart';
+import 'screens/car_remote_screen.dart';
+import 'screens/booking_screen.dart';
+import 'screens/ev_garage_screen.dart';
 import 'theme/app_colors.dart';
 import 'theme/app_tokens.dart';
 
@@ -84,7 +87,7 @@ class VinFastApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (_) => const SplashScreen(),
-        '/onboarding': (_) => const OnboardingScreen1(),
+        '/onboarding': (_) => const OnboardingScreen(),
         '/login': (_) => const LoginScreen(),
         '/otp': (_) => const OtpScreen(),
         '/home': (_) => const HomeScreen(),
@@ -92,11 +95,17 @@ class VinFastApp extends StatelessWidget {
         '/battery': (_) => const BatteryDetailScreen(),
         '/map': (_) => const MapScreen(),
         '/remote': (_) => const RemoteControlScreen(),
+        '/car-remote': (_) => const CarRemoteScreen(),
         '/stations': (_) => const ChargingStationSearchScreen(),
         '/charging-session': (ctx) => ChargingSessionScreen(
               station:
                   ModalRoute.of(ctx)!.settings.arguments as ChargingStation?,
             ),
+        '/booking': (ctx) => BookingScreen(
+              station:
+                  ModalRoute.of(ctx)?.settings.arguments as ChargingStation?,
+            ),
+        '/garage': (_) => const EvGarageScreen(),
       },
     );
   }
